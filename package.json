@@ -13,6 +13,7 @@
     "@nextui-org/react": "^2.4.6",
     "chart.js": "^4.4.3",
     "firebase": "^10.12.4",
+    "firebase-tools": "^13.15.0",
     "framer-motion": "^11.3.19",
     "prop-types": "^15.8.1",
     "react": "^18.3.1",
