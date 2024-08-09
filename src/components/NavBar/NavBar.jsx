@@ -40,13 +40,13 @@ export const NavBar = () => {
         </div>
         <div className="bg-slate-200 h-[40px] w-[2px] rounded-3xl absolute right-2"></div>
       </div>
-      <div className="col-span-8 flex items-center">
+      <div className="col-span-7 flex items-center">
         <p className="text-xl">
           Hey {firstName && `${firstName} ${lastName}`} 👋, Welcome back to your
           Secure Banking Dashboard.
         </p>
       </div>
-      <div className="col-span-2 flex items-center pl-5">
+      <div className="col-span-3 flex items-center pl-5">
         <User
           name={`${firstName} ${lastName}`}
           description={email ? `Account: ${email}` : "Your secure account"}

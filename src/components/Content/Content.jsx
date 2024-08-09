@@ -25,20 +25,20 @@ export default function Content() {
     <div className="h-full p-5">
       <div className="grid grid-cols-4 gap-2 mb-10 items-center justify-center">
         <div>
-          <p className="text-lg uppercase">Your total balance</p>
-          <p className="mt-4 text-base text-slate-400">Stats</p>
+          <p className="text-sm font-bold uppercase">Your total balance</p>
+          <p className="mt-4 text-sm text-slate-400">Stats</p>
         </div>
         <div>
-          <p className="text-lg uppercase">Your savings balance</p>
-          <p className="mt-4 text-base text-slate-400">Stats</p>
+          <p className="text-sm font-bold uppercase">Your savings balance</p>
+          <p className="mt-4 text-sm text-slate-400">Stats</p>
         </div>
         <div>
-          <p className="text-lg uppercase">Your investments</p>
-          <p className="mt-4 text-base text-slate-400">Stats</p>
+          <p className="text-sm font-bold uppercase">Your investments</p>
+          <p className="mt-4 text-sm text-slate-400">Stats</p>
         </div>
         <div>
-          <p className="text-lg uppercase">Your total debt</p>
-          <p className="mt-4 text-base text-slate-400">Stats</p>
+          <p className="text-sm font-bold uppercase">Your total debt</p>
+          <p className="mt-4 text-sm text-slate-400">Stats</p>
         </div>
       </div>
       <div className="grid grid-cols-4 gap-2 items-center justify-center">
