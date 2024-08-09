@@ -1,33 +1,51 @@
 import { Card, CardBody } from "@nextui-org/react";
 import { LineChart } from "../Chart/LineChart";
+import PropTypes from "prop-types";
 
-export const CardStats = ({ text }) => {
+export const CardStats = ({ text, label }) => {
   return (
-    <Card className="min-w-64" shadow="none">
+    <Card className="min-w-44" shadow="none">
       <CardBody>
-        <h3
-          className={`${
-            text ? "font-bold text-4xl" : "font-bold text-4xl text-slate-300"
-          }`}
-        >
-          {text ? `$${text}` : "No data"}
+        <h3 className={`font-bold text-2xl ${text ? "" : "text-slate-300"}`}>
+          {text ? `GH₵${text}` : "No data"}
         </h3>
+        <p className="mt-2 text-xl text-slate-400">{label}</p>
       </CardBody>
     </Card>
   );
 };
 
+CardStats.propTypes = {
+  text: PropTypes.string,
+  label: PropTypes.string.isRequired,
+};
+
 export default function Content() {
   return (
     <div className="h-full p-5">
-      <div className="">
-        <p className="text-3xl">Your total balance</p>
-        <p className="mt-4 text-xl text-slate-400">Stats</p>
+      <div className="grid grid-cols-4 gap-2 mb-10 items-center justify-center">
+        <div>
+          <p className="text-lg uppercase">Your total balance</p>
+          <p className="mt-4 text-base text-slate-400">Stats</p>
+        </div>
+        <div>
+          <p className="text-lg uppercase">Your savings balance</p>
+          <p className="mt-4 text-base text-slate-400">Stats</p>
+        </div>
+        <div>
+          <p className="text-lg uppercase">Your investments</p>
+          <p className="mt-4 text-base text-slate-400">Stats</p>
+        </div>
+        <div>
+          <p className="text-lg uppercase">Your total debt</p>
+          <p className="mt-4 text-base text-slate-400">Stats</p>
+        </div>
       </div>
-      <div className="mt-5 flex gap-x-3">
-        <CardStats text="234,234" />
-        <CardStats />
-        <CardStats />
+      <div className="grid grid-cols-4 gap-2 items-center justify-center">
+        <CardStats text="234,234" label="Total Balance" />
+        <CardStats text="100,000" label="Savings Balance" />
+        <CardStats text="50,000" label="Investments" />
+        <CardStats text="20,000" label="Total Debt" />
       </div>
       <div className="mt-10">
         <LineChart />

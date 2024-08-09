@@ -1,12 +1,24 @@
 import { PiSquaresFourFill } from "react-icons/pi";
 import { BiLogOut, BiMessageSquareDetail } from "react-icons/bi";
 import { TbCirclesRelation } from "react-icons/tb";
+
 import { Link } from "@nextui-org/react";
 
 import { useNavigate } from "react-router-dom";
 
+import { logout } from "../../firebase/firebaseSDK/config";
+
 export default function SideBar() {
   const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      navigate({ pathname: "/login" });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const links = [
     {
@@ -47,6 +59,7 @@ export default function SideBar() {
         <Link
           href="/login"
           className="text-slate-600 hover:text-cyan-500 transition-colors duration-100 ease-in-out"
+          onClick={handleLogout}
         >
           <div className="text-3xl">
             <BiLogOut />

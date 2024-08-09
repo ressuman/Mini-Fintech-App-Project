@@ -13,10 +13,10 @@ export default function DashBoard() {
         <div className="col-span-2">
           <SideBar />
         </div>
-        <div className="col-span-7 bg-slate-100">
+        <div className="col-span-8 bg-slate-100">
           <Outlet />
         </div>
-        <div className="col-span-3">
+        <div className="col-span-2">
           <TransAndWallet />
         </div>
       </div>
