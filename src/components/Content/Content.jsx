@@ -1,12 +1,24 @@
 import { Card, CardBody } from "@nextui-org/react";
+
 import { LineChart } from "../Chart/LineChart";
+
 import PropTypes from "prop-types";
+
+import { useEffect, useState } from "react";
+
+import { auth, db } from "../../firebase/firebaseSDK/config";
+
+import { doc, onSnapshot } from "firebase/firestore";
 
 export const CardStats = ({ text, label }) => {
   return (
     <Card className="min-w-44" shadow="none">
       <CardBody>
-        <h3 className={`font-bold text-2xl ${text ? "" : "text-slate-300"}`}>
+        <h3
+          className={`${
+            text ? "font-bold text-2xl" : "font-bold text-2xl text-slate-300"
+          }`}
+        >
           {text ? `GH₵${text}` : "No data"}
         </h3>
         <p className="mt-2 text-xl text-slate-400">{label}</p>
@@ -21,6 +33,32 @@ CardStats.propTypes = {
 };
 
 export default function Content() {
+  const [userDetails, setUserDetails] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        const docRef = doc(db, "users", user.uid);
+        const unsubscribeSnapshot = onSnapshot(docRef, (docSnap) => {
+          if (docSnap.exists()) {
+            setUserDetails(docSnap.data());
+          } else {
+            console.log("User data not found in Firestore");
+          }
+          setLoading(false);
+        });
+        return unsubscribeSnapshot; // Cleanup function to unsubscribe from onSnapshot
+      } else {
+        setUserDetails(null); // Clear userDetails if no user is authenticated
+        console.log("User is not logged in");
+        setLoading(false);
+      }
+    });
+
+    return () => unsubscribe(); // Cleanup function to unsubscribe from onAuthStateChanged
+  }, []);
+
   return (
     <div className="h-full p-5">
       <div className="grid grid-cols-4 gap-2 mb-10 items-center justify-center">
@@ -42,7 +80,18 @@ export default function Content() {
         </div>
       </div>
       <div className="grid grid-cols-4 gap-2 items-center justify-center">
-        <CardStats text="234,234" label="Total Balance" />
+        {loading ? (
+          <p>loading</p>
+        ) : (
+          <CardStats
+            text={
+              userDetails?.balance === 0
+                ? "0"
+                : userDetails?.balance.toLocaleString("en-US")
+            }
+            label="Total Balance"
+          />
+        )}
         <CardStats text="100,000" label="Savings Balance" />
         <CardStats text="50,000" label="Investments" />
         <CardStats text="20,000" label="Total Debt" />
