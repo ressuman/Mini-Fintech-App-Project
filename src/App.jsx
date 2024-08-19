@@ -136,19 +136,19 @@ export default function App() {
         element={userDetails ? <Navigate to="/dashboard" /> : <Home />}
       />
       <Route
-        path="signup"
+        path="/signup"
         element={userDetails ? <Navigate to="/dashboard" /> : <SignUp />}
       />
       <Route
-        path="login"
+        path="/login"
         element={userDetails ? <Navigate to="/dashboard" /> : <LogIn />}
       />
       <Route
-        path="dashboard"
+        path="/dashboard"
         element={userDetails ? <DashBoard /> : <Navigate to="/login" />}
       >
         <Route index element={<Content />} />
-        <Route path="transactions" element={<Transactions />} />
+        <Route path="/transactions" element={<Transactions />} />
       </Route>
       <Route path="*" element={<NotFound />} />
     </Route>
