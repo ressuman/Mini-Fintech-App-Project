@@ -133,22 +133,22 @@ export default function App() {
     <Route path="/" element={<RootLayout />}>
       <Route
         index
-        element={userDetails ? <Navigate to="/dashboard" /> : <Home />}
+        element={userDetails ? <Navigate to="dashboard" /> : <Home />}
       />
       <Route
-        path="/signup"
-        element={userDetails ? <Navigate to="/dashboard" /> : <SignUp />}
+        path="signup"
+        element={userDetails ? <Navigate to="dashboard" /> : <SignUp />}
       />
       <Route
-        path="/login"
-        element={userDetails ? <Navigate to="/dashboard" /> : <LogIn />}
+        path="login"
+        element={userDetails ? <Navigate to="dashboard" /> : <LogIn />}
       />
       <Route
-        path="/dashboard"
-        element={userDetails ? <DashBoard /> : <Navigate to="/login" />}
+        path="dashboard"
+        element={userDetails ? <DashBoard /> : <Navigate to="login" />}
       >
         <Route index element={<Content />} />
-        <Route path="/transactions" element={<Transactions />} />
+        <Route path="transactions" element={<Transactions />} />
       </Route>
       <Route path="*" element={<NotFound />} />
     </Route>
